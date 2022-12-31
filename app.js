@@ -1,26 +1,26 @@
-require('dotenv').config();
 
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const logger = require('morgan');
+const morgan = require("morgan");
+require("./config/db.config");
 
 const app = express();
-require('./config/db.config.js');
 
 app.use(express.json());
-app.use(logger('dev'));
+app.use(morgan("dev"));
 // Não esquecer de criar variável de ambiente com o endereço do seu app React (local ou deployado no Netlify)
-app.use(cors({ origin: process.env.REACT_APP_URL }));
-
-
+//app.use(cors({ origin: process.env.REACT_APP_URL }));
 
 const userRouter = require("./routes/user.routes");
-app.use("/api", userRouter);
+app.use("/", userRouter);
+
+//Middleware
+app.use(require('./middlewares/isAuthenticated'));
+
 
 //Configuração de erro
-require('./error-handling/index.js')
-
-
+require('./error-handling/error')(app);
 
 app.listen(Number(process.env.PORT), () =>
   console.log(`Server up and running at port ${process.env.PORT}`)

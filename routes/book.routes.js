@@ -1,11 +1,8 @@
 // Requires
-
 const { Router } = require('express');
 const Book = require('../models/Book.model.js');
-const User = require('../models/User.model.js');
 
 //Environment
-const router = Router();
 require("dotenv").config();
 
 router.post('/book', async (req, res, next) => {
@@ -21,3 +18,5 @@ router.post('/book', async (req, res, next) => {
     }
 
 })
+
+module.exports = router;
