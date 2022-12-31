@@ -95,7 +95,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// cRud (READ) - HTTP GET
+// Crud (READ) - HTTP GET
 // Buscar dados do usuário
 router.get("/profile", isAuthenticated, attachCurrentUser, (req, res) => {
   console.log(req.headers);

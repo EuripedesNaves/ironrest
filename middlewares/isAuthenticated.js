@@ -1,4 +1,4 @@
-const jwt = require("express-jwt");
+const { expressjwt: jwt } = require("express-jwt");
 
 function extractTokenFromHeaders(req, res) {
   if (!req.headers.authorization) {
